@@ -4,12 +4,14 @@ import styles from './Sidebar.module.scss'
 import { ThemeSwitch } from 'widgets/ThemeSwitch'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { Button, ThemeButton } from 'shared/ui/Button'
+import { useTranslation } from 'react-i18next'
 
 interface SidebarProps {
     className?: string
 }
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
+    const { t } = useTranslation()
     const [collapsed, setCollapsed] = useState(false)
 
     const onToggle = (): void => {
@@ -17,12 +19,18 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
     }
 
     return (
-        <div className={classNames(styles.Sidebar, { [styles.collapsed]: collapsed }, [className])}>
+        <div
+            className={classNames(
+                styles.Sidebar,
+                { [styles.collapsed]: collapsed },
+                [className]
+            )}
+        >
             <Button
                 theme={ThemeButton.Clear}
                 onClick={onToggle}
             >
-                Toggle
+                {t('Меню')}
             </Button>
             <div className={styles.switchers}>
                 <ThemeSwitch/>

@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true,
     },
     "extends": [
         "standard-with-typescript",
@@ -33,6 +34,7 @@ module.exports = {
         'react/jsx-indent': [2, 4],
         "indent": "off",
         'react/button-has-type': 'error',
+        "max-len": ['error', {ignoreComments: true}],
         "@typescript-eslint/indent": [2, 4],
         "@typescript-eslint/no-misused-promises": "off",
         '@typescript-eslint/naming-convention': 'off',
