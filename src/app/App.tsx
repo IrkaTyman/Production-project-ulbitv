@@ -4,17 +4,21 @@ import { classNames } from 'shared/lib/classNames';
 import { AppRouter } from './providers/router';
 import { Navbar } from "widgets/Navbar";
 import { Sidebar } from "widgets/Sidebar";
+import { useTranslation } from "react-i18next";
+import { Suspense } from "react";
 
 const App = () => {
     const {theme} = useTheme();
 
     return (
         <div className={classNames('app', {}, [theme])}>
-            <Navbar/>
-            <div className="contentPage">
-                <Sidebar/>
-                <AppRouter/>
-            </div>
+            <Suspense fallback="">
+                <Navbar/>
+                <div className="contentPage">
+                    <Sidebar/>
+                    <AppRouter/>
+                </div>
+            </Suspense>
         </div>
     );
 };
