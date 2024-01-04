@@ -11,7 +11,7 @@ export const AppRouter: FC = () => {
                         path={path}
                         key={path}
                         element={
-                            <div className="pageWrapper">
+                            <div className="page-wrapper">
                                 {element}
                             </div>}
                     />

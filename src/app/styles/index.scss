@@ -5,18 +5,16 @@
 
 .app {
     font: var(--font-m);
-
     background-color: var(--bg-color);
     color: var(--primary-color);
-
     min-height: 100vh;
 }
 
-.contentPage {
-    display: flex;
+.content-page {
+ display: flex;
 }
 
-.pageWrapper {
+.page-wrapper {
     flex-grow: 1;
     padding: 20px;
 }
