@@ -9,6 +9,7 @@
       "paths": {
         "*": ["./src/*"],
       },
+      "strictNullChecks": true,
       "allowJs": true,
       "moduleResolution": "node",
       "esModuleInterop": true,

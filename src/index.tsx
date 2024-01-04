@@ -1,15 +1,18 @@
-import { render } from "react-dom";
-import App from "./app/App";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "app/providers/ThemeProvider";
+import App from './app/App'
+import { BrowserRouter } from 'react-router-dom'
+import { ThemeProvider } from 'app/providers/ThemeProvider'
 
-import "shared/config/i18n/i18n";
+import { createRoot } from 'react-dom/client'
 
-render (
+import 'shared/config/i18n/i18n'
+
+const container = document.getElementById('app')
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!)
+root.render(
     <BrowserRouter>
         <ThemeProvider>
             <App/>
         </ThemeProvider>
-    </BrowserRouter>,
-    document.getElementById('root')!,
+    </BrowserRouter>
 )
