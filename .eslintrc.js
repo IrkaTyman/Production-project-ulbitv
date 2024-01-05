@@ -42,7 +42,21 @@ module.exports = {
         '@typescript-eslint/naming-convention': 'off',
         "n/handle-callback-err": "off",
         'react/react-in-jsx-scope': 'off',
-        "i18next/no-literal-string": ['error', {markupOnly: true}],
+        "i18next/no-literal-string": [
+            'error', 
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid'],
+            }
+    ],
         'react/jsx-filename-extension': [2, {extensions: ['.js', '.ts', '.tsx']}]
-    }
+    },
+    overrides: [
+        {
+            files: ['**/**/*.test.{ts, tsx}'],
+            rules: {
+                "i18next/no-literal-string": "off",
+            }
+        }
+    ]
 }
