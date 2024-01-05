@@ -4,7 +4,7 @@ import {
     type PropsWithChildren
 } from 'react'
 import styles from './Button.module.scss'
-import { classNames } from 'shared/lib/classNames'
+import { classNames } from 'shared/lib/classNames/classNames'
 
 export enum ThemeButton {
     Clear = 'clear',
@@ -21,7 +21,7 @@ ButtonHTMLAttributes<HTMLButtonElement> &
 export const Button: FC<ButtonProps> = ({
     className,
     children,
-    theme = ThemeButton.Clear,
+    theme,
     ...props
 }) => {
     return (
@@ -31,8 +31,8 @@ export const Button: FC<ButtonProps> = ({
             className={classNames(
                 styles.Button,
                 {},
-                [className, styles[theme]
-                ])}
+                [className, (theme != null) ? styles[theme] : undefined]
+            )}
         >
             {children}
         </button>
