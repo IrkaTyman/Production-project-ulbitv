@@ -5,14 +5,17 @@ import { ThemeProvider } from 'app/providers/ThemeProvider'
 import { createRoot } from 'react-dom/client'
 
 import 'shared/config/i18n/i18n'
+import { ErrorBoundary } from 'app/providers/ErrorBoundary'
 
 const container = document.getElementById('root')
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!)
 root.render(
-    <BrowserRouter>
-        <ThemeProvider>
-            <App/>
-        </ThemeProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+        <BrowserRouter>
+            <ThemeProvider>
+                <App/>
+            </ThemeProvider>
+        </BrowserRouter>
+    </ErrorBoundary>
 )

@@ -36,8 +36,11 @@ module.exports = {
         'react/button-has-type': 'error',
         "max-len": ['error', {ignoreComments: true}],
         "@typescript-eslint/indent": [2, 4],
+        "@typescript-eslint/consistent-type-definitions":"off",
+        "@typescript-eslint/explicit-function-return-type": ["warn"],
         "@typescript-eslint/no-misused-promises": "off",
         '@typescript-eslint/naming-convention': 'off',
+        "n/handle-callback-err": "off",
         'react/react-in-jsx-scope': 'off',
         "i18next/no-literal-string": ['error', {markupOnly: true}],
         'react/jsx-filename-extension': [2, {extensions: ['.js', '.ts', '.tsx']}]
