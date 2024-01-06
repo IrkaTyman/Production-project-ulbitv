@@ -7,7 +7,8 @@ module.exports = {
     "extends": [
         "standard-with-typescript",
         "plugin:react/recommended",
-        "plugin:i18next/recommended"
+        "plugin:i18next/recommended",
+        "plugin:storybook/recommended"
     ],
     "overrides": [
         {
@@ -37,10 +38,12 @@ module.exports = {
         "max-len": ['error', {ignoreComments: true}],
         "@typescript-eslint/indent": [2, 4],
         "@typescript-eslint/consistent-type-definitions":"off",
-        "@typescript-eslint/explicit-function-return-type": ["warn"],
+        "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-misused-promises": "off",
         '@typescript-eslint/naming-convention': 'off',
+        "@typescript-eslint/strict-boolean-expressions": "off",
         "n/handle-callback-err": "off",
+        "react/display-name": "off",
         'react/react-in-jsx-scope': 'off',
         "i18next/no-literal-string": [
             'error', 

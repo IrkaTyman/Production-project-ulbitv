@@ -8,7 +8,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 
 export enum ThemeButton {
     Clear = 'clear',
-
+    Outline = 'outline'
 }
 
 type ButtonProps = PropsWithChildren &
