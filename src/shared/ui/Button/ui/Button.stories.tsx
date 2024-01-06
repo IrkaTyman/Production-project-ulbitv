@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button, ThemeButton } from './Button'
+import { Button, ButtonSize, ButtonTheme } from './Button'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
 
@@ -10,36 +10,84 @@ const meta = {
     parameters: {
         layout: 'centered'
     },
-    argTypes: {}
+    argTypes: {},
+    args: {
+        size: ButtonSize.M,
+        children: 'Button'
+    }
 } satisfies Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-    args: {
-        children: 'Button'
-    }
+    args: { }
 }
 
 export const Clear: Story = {
     args: {
-        theme: ThemeButton.Clear,
-        children: 'Button'
+        theme: ButtonTheme.Clear
     }
 }
 
 export const Outline: Story = {
     args: {
-        theme: ThemeButton.Outline,
-        children: 'Button'
+        theme: ButtonTheme.Outline
+    }
+}
+
+export const OutlineL: Story = {
+    args: {
+        theme: ButtonTheme.Outline,
+        size: ButtonSize.L
+    }
+}
+
+export const OutlineXL: Story = {
+    args: {
+        theme: ButtonTheme.Outline,
+        size: ButtonSize.XL
     }
 }
 
 export const OutlineDark: Story = {
     args: {
-        theme: ThemeButton.Outline,
-        children: 'Button'
+        theme: ButtonTheme.Outline
     },
     decorators: [ThemeDecorator(Theme.Dark)]
+}
+
+export const BackgroundTheme: Story = {
+    args: {
+        theme: ButtonTheme.Background
+    }
+}
+
+export const BackgroundInvertedTheme: Story = {
+    args: {
+        theme: ButtonTheme.BackgroundInverted
+    }
+}
+
+export const Square: Story = {
+    args: {
+        theme: ButtonTheme.BackgroundInverted,
+        square: true
+    }
+}
+
+export const SquareSizeL: Story = {
+    args: {
+        theme: ButtonTheme.BackgroundInverted,
+        square: true,
+        size: ButtonSize.L
+    }
+}
+
+export const SquareSizeXl: Story = {
+    args: {
+        theme: ButtonTheme.BackgroundInverted,
+        square: true,
+        size: ButtonSize.XL
+    }
 }
