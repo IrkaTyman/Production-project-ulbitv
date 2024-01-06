@@ -9,10 +9,10 @@ interface LoaderProps {
 export const Loader: FC<LoaderProps> = ({ className }) => {
     return (
         <div className={classNames('lds-ellipsis', {}, [className])}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div />
+            <div />
+            <div />
+            <div />
         </div>
     )
 }
