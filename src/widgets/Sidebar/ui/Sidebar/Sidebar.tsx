@@ -32,7 +32,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
                 theme={ThemeButton.Clear}
                 onClick={onToggle}
             >
-                {t('Меню')}
+                {t('Меню(вкл/выкл)')}
             </Button>
             <div className={styles.switchers}>
                 <ThemeSwitch/>
