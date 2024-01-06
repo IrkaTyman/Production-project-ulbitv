@@ -9,11 +9,10 @@ export function buildPlugins ({
     paths,
     isDev
 }: BuildOptions): webpack.WebpackPluginInstance[] {
-    const plugins = [
+    const plugins: webpack.WebpackPluginInstance[] = [
         new HtmlWebpackPlugin({
             template: paths.html
         }),
-        new webpack.ProgressPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css'
@@ -24,6 +23,7 @@ export function buildPlugins ({
     ]
 
     if (isDev) {
+        plugins.push(new webpack.ProgressPlugin())
         plugins.push(new BundleAnalyzerPlugin({
             openAnalyzer: false
         }))
