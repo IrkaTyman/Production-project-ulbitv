@@ -35,7 +35,7 @@ module.exports = {
         'react/jsx-indent': [2, 4],
         "indent": "off",
         'react/button-has-type': 'error',
-        "max-len": ['error', {ignoreComments: true}],
+        "max-len": ['error', {ignoreComments: true, code: 100}],
         "@typescript-eslint/indent": [2, 4],
         "@typescript-eslint/consistent-type-definitions":"off",
         "@typescript-eslint/explicit-function-return-type": "off",
