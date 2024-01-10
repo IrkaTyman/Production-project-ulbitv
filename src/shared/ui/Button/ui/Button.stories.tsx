@@ -30,6 +30,12 @@ export const Clear: Story = {
     }
 }
 
+export const ClearInverted: Story = {
+    args: {
+        theme: ButtonTheme.ClearInverted
+    }
+}
+
 export const Outline: Story = {
     args: {
         theme: ButtonTheme.Outline

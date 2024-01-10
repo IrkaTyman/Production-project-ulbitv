@@ -5,8 +5,6 @@ import { Navbar } from 'widgets/Navbar'
 import { Sidebar } from 'widgets/Sidebar'
 import { type FC, Suspense } from 'react'
 
-import './styles/index.scss'
-
 const App: FC = () => {
     const { theme } = useTheme()
 

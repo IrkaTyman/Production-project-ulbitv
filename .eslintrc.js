@@ -10,26 +10,14 @@ module.exports = {
         "plugin:i18next/recommended",
         "plugin:storybook/recommended"
     ],
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
         "react",
-        "i18next"
+        "i18next",
+        "react-hooks"
     ],
     "rules": {
         'react/jsx-indent': [2, 4],
@@ -44,9 +32,11 @@ module.exports = {
         "@typescript-eslint/strict-boolean-expressions": "off",
         "n/handle-callback-err": "off",
         "react/display-name": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error",
         'react/react-in-jsx-scope': 'off',
         "i18next/no-literal-string": [
-            'error', 
+            'error',
             {
                 markupOnly: true,
                 ignoreAttribute: ['data-testid'],
@@ -59,6 +49,17 @@ module.exports = {
             files: ['**/**/*.test.{ts, tsx}'],
             rules: {
                 "i18next/no-literal-string": "off",
+            }
+        },
+        {
+            "env": {
+                "node": true
+            },
+            "files": [
+                ".eslintrc.{js,cjs}"
+            ],
+            "parserOptions": {
+                "sourceType": "script"
             }
         }
     ]

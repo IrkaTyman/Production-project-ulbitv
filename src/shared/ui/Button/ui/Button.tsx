@@ -8,6 +8,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 
 export enum ButtonTheme {
     Clear = 'clear',
+    ClearInverted = 'clearInverted',
     Outline = 'outline',
     Background = 'background',
     BackgroundInverted = 'backgroundInverted',
