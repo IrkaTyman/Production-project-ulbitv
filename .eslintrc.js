@@ -30,6 +30,7 @@ module.exports = {
         "@typescript-eslint/no-misused-promises": "off",
         '@typescript-eslint/naming-convention': 'off',
         "@typescript-eslint/strict-boolean-expressions": "off",
+        '@typescript-eslint/no-floating-promises': 'off',
         "n/handle-callback-err": "off",
         "react/display-name": "off",
         "react-hooks/rules-of-hooks": "error",

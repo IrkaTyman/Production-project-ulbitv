@@ -8,5 +8,7 @@
     "Произошла ошибка":"Произошла ошибка",
     "Меню(вкл/выкл)":"Menu(on/off)",
     "Короткий язык":"En",
-    "Войти": "Sign in"
+    "Войти": "Sign in",
+    "increment": "increment",
+    "decrement": "decrement"
 }
