@@ -7,7 +7,7 @@ type PortalProps = PropsWithChildren & {
 
 export const Portal: FC<PortalProps> = ({
     children,
-    element = document.querySelector('.app')
+    element = document.body
 }) => {
-    return createPortal(children, element ?? document.body)
+    return createPortal(children, element)
 }
