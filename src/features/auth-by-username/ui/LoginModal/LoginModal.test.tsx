@@ -4,7 +4,7 @@ import { componentRender } from 'shared/config/tests'
 
 describe('features/auth-by-username/LoginModal', () => {
     test('Компонент отобразился в DOM', () => {
-        componentRender(<LoginModal data-testid="LoginModal"/>)
+        componentRender(<LoginModal data-testid="LoginModal" isOpen={true}/>)
         expect(screen.getByTestId('LoginModal')).toBeInTheDocument()
     })
 })

@@ -20,7 +20,8 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook",
-    "start:dev:server": "node ./json-server/index.js"
+    "start:dev:server": "node ./json-server/index.js",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -66,6 +67,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.0",
+    "husky": "^8.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -91,6 +93,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "axios": "^1.6.5",
     "i18next": "^23.7.15",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",

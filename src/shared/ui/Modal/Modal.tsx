@@ -12,6 +12,7 @@ import { classNames } from 'shared/lib'
 import { Portal } from '../Portal'
 
 export type Props = PropsWithChildren & {
+    'data-testid'?: string
     className?: string
     isOpen?: boolean
     onClose?: () => void
@@ -25,7 +26,8 @@ export const Modal: FC<Props> = ({
     children,
     isOpen,
     onClose,
-    lazy
+    lazy,
+    'data-testid': dataTestId = 'Modal'
 }) => {
     const [isClosing, setIsClosing] = useState(false)
     const [isMounted, setIsMounted] = useState(false)
@@ -79,7 +81,10 @@ export const Modal: FC<Props> = ({
 
     return (
         <Portal>
-            <div className={classNames(styles.Modal, mods, [className])}>
+            <div
+                data-testid={dataTestId}
+                className={classNames(styles.Modal, mods, [className])}
+            >
                 <div className={styles.overlay} onClick={closeHandler}>
                     <div className={styles.content} onClick={onContentClick}>
                         {children}

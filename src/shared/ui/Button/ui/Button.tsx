@@ -35,10 +35,12 @@ export const Button: FC<ButtonProps> = ({
     theme,
     square,
     size,
+    disabled,
     ...props
 }) => {
     const mods: Record<string, boolean | undefined> = {
-        [styles.square]: square
+        [styles.square]: square,
+        [styles.disabled]: disabled
     }
 
     const additionalClasses = [
@@ -56,6 +58,7 @@ export const Button: FC<ButtonProps> = ({
                 mods,
                 additionalClasses
             )}
+            disabled={disabled}
         >
             {children}
         </button>
