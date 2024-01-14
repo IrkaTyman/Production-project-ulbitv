@@ -11,21 +11,24 @@ import styles from './Modal.module.scss'
 import { classNames } from 'shared/lib'
 import { Portal } from '../Portal'
 
-type ModalProps = PropsWithChildren & {
+export type Props = PropsWithChildren & {
     className?: string
     isOpen?: boolean
     onClose?: () => void
+    lazy?: boolean
 }
 
 const ANIMATION_DELAY = 200
 
-export const Modal: FC<ModalProps> = ({
+export const Modal: FC<Props> = ({
     className,
     children,
     isOpen,
-    onClose
+    onClose,
+    lazy
 }) => {
     const [isClosing, setIsClosing] = useState(false)
+    const [isMounted, setIsMounted] = useState(false)
     const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
     const closeHandler = useCallback(() => {
@@ -63,6 +66,16 @@ export const Modal: FC<ModalProps> = ({
             window.removeEventListener('keydown', onKeyDown)
         }
     }, [isOpen, onKeyDown])
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true)
+        }
+    }, [isOpen])
+
+    if (lazy && !isMounted) {
+        return null
+    }
 
     return (
         <Portal>
