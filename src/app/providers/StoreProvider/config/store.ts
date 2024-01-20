@@ -2,18 +2,28 @@ import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit'
 import { type StateSchema } from '../config/StateSchema'
 import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
-import { loginReducer } from 'features/auth-by-username'
+import { createReducerManager } from './reducerManager'
 
-export function createReduxStore (initialState?: StateSchema) {
+export function createReduxStore (
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>
+) {
     const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
         counter: counterReducer,
-        user: userReducer,
-        loginForm: loginReducer
+        user: userReducer
     }
 
-    return configureStore<StateSchema>({
-        reducer: rootReducers,
+    const reducerManager = createReducerManager(rootReducers)
+
+    const store = configureStore<StateSchema>({
+        reducer: reducerManager.reduce,
         devTools: __IS_DEV__,
         preloadedState: initialState
     })
+
+    // @ts-expect-error Неверный импорт типа
+    store.reducerManager = reducerManager
+
+    return store
 }

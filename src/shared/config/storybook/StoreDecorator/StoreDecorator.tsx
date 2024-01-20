@@ -1,13 +1,23 @@
 import { type ReactRenderer } from '@storybook/react'
 import 'app/styles/index.scss'
 import { type DecoratorFunction } from '@storybook/csf'
-import { Provider } from 'react-redux'
-import { createReduxStore, type StateSchema } from 'app/providers/StoreProvider'
+import { type StateSchema, StoreProvider } from 'app/providers/StoreProvider'
+import { type ReducersMapObject } from '@reduxjs/toolkit'
+import { loginReducer } from 'features/auth-by-username/model/slice/loginSlice'
 
-export const StoreDecorator =
-    (initialState?: Partial<StateSchema>): DecoratorFunction<ReactRenderer> =>
-        (Story) => (
-            <Provider store={createReduxStore(initialState as StateSchema)}>
-                <Story/>
-            </Provider>
-        )
+const defaultAsyncReducers: Partial<ReducersMapObject<StateSchema>> = {
+    loginForm: loginReducer
+}
+
+export const StoreDecorator = (
+    initialState?: Partial<StateSchema>,
+    asyncReducers?: Partial<ReducersMapObject<StateSchema>>
+): DecoratorFunction<ReactRenderer> =>
+    (Story) => (
+        <StoreProvider
+            initialState={initialState}
+            asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}
+        >
+            <Story/>
+        </StoreProvider>
+    )

@@ -1,7 +1,8 @@
-import { type FC } from 'react'
+import { type FC, Suspense } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Modal, type ModalProps } from 'shared/ui/Modal'
-import { LoginForm } from '../LoginForm/LoginForm'
+import { LoginFormAsync } from '../LoginForm/LoginForm.async'
+import { Loader } from 'shared/ui/Loader'
 
 type LoginModalProps = ModalProps & Readonly<{
     className?: string
@@ -20,7 +21,9 @@ export const LoginModal: FC<LoginModalProps> = ({
             data-testid={dataTestId}
             className={classNames('', {}, [className])}
         >
-            <LoginForm/>
+            <Suspense fallback={<Loader/>}>
+                <LoginFormAsync/>
+            </Suspense>
         </Modal>
     )
 }
