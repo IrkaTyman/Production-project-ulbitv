@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import styles from './NotFoundPage.module.scss'
 import { useTranslation } from 'react-i18next'
@@ -7,7 +7,7 @@ interface NotFoundPageProps {
     className?: string
 }
 
-export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
+export const NotFoundPage: FC<NotFoundPageProps> = memo(({ className }: NotFoundPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -15,4 +15,4 @@ export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
             {t('Страница не найдена')}
         </div>
     )
-}
+})

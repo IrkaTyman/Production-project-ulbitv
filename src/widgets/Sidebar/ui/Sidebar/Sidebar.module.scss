@@ -37,15 +37,6 @@
     align-items: center;
 }
 
-.itemIcon {
-    fill: var(--inverted-secondary-color)
-}
-
-.link {
-    margin-left: 10px;
-    opacity: 1;
-}
-
 .collapsed {
     width: var(--sidebar-width-collapsed);
 
@@ -55,11 +46,5 @@
 
     .lang {
         margin-left: 0;
-    }
-
-    .link {
-        opacity: 0;
-        transition: opacity 0.2s;
-        width: 0;
     }
 }

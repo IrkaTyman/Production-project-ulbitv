@@ -1,0 +1,16 @@
+.itemIcon {
+  fill: var(--inverted-secondary-color)
+}
+
+.link {
+  margin-left: 10px;
+  opacity: 1;
+}
+
+.collapsed {
+  .link {
+    opacity: 0;
+    transition: opacity 0.2s;
+    width: 0;
+  }
+}

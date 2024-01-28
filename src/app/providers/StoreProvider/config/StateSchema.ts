@@ -7,6 +7,7 @@ import {
     type ReducersMapObject,
     type UnknownAction
 } from '@reduxjs/toolkit'
+import { type ProfileSchema } from 'entities/Profile'
 
 export type StateSchema = {
     counter: CounterSchema
@@ -14,6 +15,7 @@ export type StateSchema = {
 
     // Async reducers
     loginForm?: LoginSchema
+    profile?: ProfileSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

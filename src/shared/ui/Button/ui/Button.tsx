@@ -1,6 +1,6 @@
 import {
     type ButtonHTMLAttributes,
-    type FC,
+    type FC, memo,
     type PropsWithChildren
 } from 'react'
 import styles from './Button.module.scss'
@@ -29,7 +29,7 @@ ButtonHTMLAttributes<HTMLButtonElement> &
     size?: ButtonSize
 }
 
-export const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = memo(({
     className,
     children,
     theme,
@@ -37,7 +37,7 @@ export const Button: FC<ButtonProps> = ({
     size,
     disabled,
     ...props
-}) => {
+}: ButtonProps) => {
     const mods: Record<string, boolean | undefined> = {
         [styles.square]: square,
         [styles.disabled]: disabled
@@ -63,4 +63,4 @@ export const Button: FC<ButtonProps> = ({
             {children}
         </button>
     )
-}
+})

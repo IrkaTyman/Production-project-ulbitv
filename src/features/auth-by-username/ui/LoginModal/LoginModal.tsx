@@ -1,4 +1,4 @@
-import { type FC, Suspense } from 'react'
+import { type FC, memo, Suspense } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Modal, type ModalProps } from 'shared/ui/Modal'
 import { LoginFormAsync } from '../LoginForm/LoginForm.async'
@@ -9,11 +9,11 @@ type LoginModalProps = ModalProps & Readonly<{
     'data-testid'?: string
 }>
 
-export const LoginModal: FC<LoginModalProps> = ({
+export const LoginModal: FC<LoginModalProps> = memo(({
     className,
     'data-testid': dataTestId = 'LoginModal',
     ...modalProps
-}) => {
+}: LoginModalProps) => {
     return (
         <Modal
             {...modalProps}
@@ -22,8 +22,8 @@ export const LoginModal: FC<LoginModalProps> = ({
             className={classNames('', {}, [className])}
         >
             <Suspense fallback={<Loader/>}>
-                <LoginFormAsync/>
+                <LoginFormAsync onSuccess={modalProps.onClose}/>
             </Suspense>
         </Modal>
     )
-}
+})

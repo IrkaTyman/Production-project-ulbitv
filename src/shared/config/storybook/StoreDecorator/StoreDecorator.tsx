@@ -4,9 +4,11 @@ import { type DecoratorFunction } from '@storybook/csf'
 import { type StateSchema, StoreProvider } from 'app/providers/StoreProvider'
 import { type ReducersMapObject } from '@reduxjs/toolkit'
 import { loginReducer } from 'features/auth-by-username/model/slice/loginSlice'
+import { profileReducer } from 'entities/Profile'
 
 const defaultAsyncReducers: Partial<ReducersMapObject<StateSchema>> = {
-    loginForm: loginReducer
+    loginForm: loginReducer,
+    profile: profileReducer
 }
 
 export const StoreDecorator = (

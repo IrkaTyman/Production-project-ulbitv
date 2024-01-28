@@ -1,5 +1,5 @@
 import {
-    type FC,
+    type FC, memo,
     type PropsWithChildren,
     useMemo,
     useState
@@ -17,10 +17,10 @@ type ThemeProviderProps = PropsWithChildren & {
     initialTheme?: Theme
 }
 
-const ThemeProvider: FC<ThemeProviderProps> = ({
+const ThemeProvider: FC<ThemeProviderProps> = memo(({
     children,
     initialTheme
-}) => {
+}: ThemeProviderProps) => {
     const [theme, setTheme] = useState<Theme>(initialTheme ?? defaultTheme)
 
     const defaultProps = useMemo(() => ({
@@ -33,6 +33,6 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
             {children}
         </ThemeContext.Provider>
     )
-}
+})
 
 export default ThemeProvider

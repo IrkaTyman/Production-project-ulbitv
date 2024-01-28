@@ -1,4 +1,4 @@
-import { type FC, type PropsWithChildren } from 'react'
+import { type FC, memo, type PropsWithChildren } from 'react'
 import { Provider } from 'react-redux'
 import { createReduxStore } from '../config/store'
 import { type StateSchema } from '../config/StateSchema'
@@ -9,11 +9,11 @@ type StoreProviderProps = PropsWithChildren & Readonly<{
     asyncReducers?: Partial<ReducersMapObject<StateSchema>>
 }>
 
-export const StoreProvider: FC<StoreProviderProps> = ({
+export const StoreProvider: FC<StoreProviderProps> = memo(({
     children,
     initialState,
     asyncReducers
-}) => {
+}: StoreProviderProps) => {
     return (
         <Provider
             store={createReduxStore(
@@ -24,4 +24,4 @@ export const StoreProvider: FC<StoreProviderProps> = ({
             {children}
         </Provider>
     )
-}
+})

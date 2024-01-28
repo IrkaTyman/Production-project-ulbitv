@@ -1,4 +1,4 @@
-import { type FC, useCallback } from 'react'
+import { type FC, memo, useCallback } from 'react'
 import { Button } from 'shared/ui/Button'
 import { useSelector, useDispatch } from 'react-redux'
 import { counterActions } from '../model/slice/counterSlice'
@@ -9,9 +9,9 @@ type CounterProps = Readonly<{
     'data-testid'?: string
 }>
 
-export const Counter: FC<CounterProps> = ({
+export const Counter: FC<CounterProps> = memo(({
     'data-testid': dataTestId = 'Counter'
-}) => {
+}: CounterProps) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
     const counterValue = useSelector(getCounterValue)
@@ -41,4 +41,4 @@ export const Counter: FC<CounterProps> = ({
             </Button>
         </div>
     )
-}
+})

@@ -37,6 +37,9 @@ const config: Config = {
         'json',
         'node'
     ],
+    roots: [
+        '<rootDir>/src'
+    ],
     rootDir: '../../',
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'

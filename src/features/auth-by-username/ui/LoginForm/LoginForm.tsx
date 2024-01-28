@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { useTranslation } from 'react-i18next'
 import { Button, ButtonTheme } from 'shared/ui/Button'
 import { Input } from 'shared/ui/Input'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { Text } from 'shared/ui/Text'
@@ -17,8 +17,10 @@ import {
     DynamicModuleLoader,
     type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
 
 export type Props = Readonly<{
+    onSuccess?: () => void
     className?: string
     'data-testid'?: string
 }>
@@ -29,10 +31,11 @@ const initialReducers: ReducersList = {
 
 const LoginForm: FC<Props> = memo(({
     className,
+    onSuccess,
     'data-testid': dataTestId = 'LoginForm'
 }: Props) => {
     const { t } = useTranslation()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const username = useSelector(getLoginUsername)
     const password = useSelector(getLoginPassword)
     const error = useSelector(getLoginError)
@@ -46,11 +49,14 @@ const LoginForm: FC<Props> = memo(({
         dispatch(loginActions.setPassword(value))
     }, [dispatch])
 
-    const onLoginClick = useCallback(() => {
+    const onLoginClick = useCallback(async () => {
         // TODO исправить ошибку типизации
         // @ts-expect-error В курсе пока что не решаем эту проблему
-        dispatch(loginByUsername({ username, password }))
-    }, [dispatch, username, password])
+        const result = await dispatch(loginByUsername({ username, password }))
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess?.()
+        }
+    }, [dispatch, username, password, onSuccess])
 
     return (
         <DynamicModuleLoader
@@ -63,7 +69,7 @@ const LoginForm: FC<Props> = memo(({
             >
                 <Text title={t('Форма авторизации')}/>
                 {error &&
-                <Text text={t(error)} theme={TextTheme.Error}/>
+                    <Text text={t(error)} theme={TextTheme.Error}/>
                 }
                 <Input
                     type="text"
