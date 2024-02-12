@@ -1,11 +1,12 @@
-import { type FC, memo } from 'react'
-import { useTranslation } from 'react-i18next'
+import { type FC, memo, useEffect } from 'react'
 
 import {
     DynamicModuleLoader,
     type ReducersList
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { profileReducer } from 'entities/Profile'
+import { fetchProfileData, profileReducer } from 'entities/Profile'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch'
+import { ProfileCard } from 'entities/Profile/ui/ProfileCard'
 
 const reducers: ReducersList = {
     profile: profileReducer
@@ -20,7 +21,11 @@ const ProfilePage: FC<Props> = memo(({
     className,
     'data-testid': dataTestId = 'ProfilePage'
 }: Props) => {
-    const { t } = useTranslation()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchProfileData())
+    }, [dispatch])
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
@@ -28,7 +33,7 @@ const ProfilePage: FC<Props> = memo(({
                 data-testid={dataTestId}
                 className={className}
             >
-                {t('Profile page')}
+                <ProfileCard/>
             </div>
         </DynamicModuleLoader>
     )

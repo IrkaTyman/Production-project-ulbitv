@@ -32,6 +32,7 @@ module.exports = {
         "@typescript-eslint/strict-boolean-expressions": "off",
         '@typescript-eslint/no-floating-promises': 'off',
         "@typescript-eslint/unbound-method":"off",
+        "@typescript-eslint/no-invalid-void-type":"off",
         "n/handle-callback-err": "off",
         "react/display-name": "off",
         "react-hooks/rules-of-hooks": "error",

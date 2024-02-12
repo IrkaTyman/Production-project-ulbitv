@@ -17,10 +17,10 @@ export default ({ config }: { config: webpack.Configuration }) => {
     config.resolve?.extensions?.push('.ts', '.tsx')
 
     if (config.module != null) {
-        config.module.rules = config.module.rules?.map((rule: RuleSetRule) => {
+        config.module.rules = config.module.rules?.map(rule => {
             // eslint-disable-next-line @typescript-eslint/prefer-includes
-            if (/svg/.test(rule.test as string)) {
-                return { ...rule, exclude: /\.svg$/i }
+            if (/svg/.test((rule as RuleSetRule).test as string)) {
+                return { ...(rule as RuleSetRule), exclude: /\.svg$/i }
             }
 
             return rule
@@ -35,7 +35,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
     config.plugins?.push(
         new DefinePlugin({
-            __IS_DEV__: JSON.stringify(true)
+            __IS_DEV__: JSON.stringify(true),
+            __API__: JSON.stringify('')
         })
     )
 
