@@ -40,7 +40,11 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }: SidebarProps) => {
 
             <div className={styles.items}>
                 {SidebarItemsList.map((item) => (
-                    <SidebarItem item={item} collapsed={collapsed} key={item.path}/>
+                    <SidebarItem
+                        item={item}
+                        collapsed={collapsed}
+                        key={item.path}
+                    />
                 ))}
             </div>
 

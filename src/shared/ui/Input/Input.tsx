@@ -6,17 +6,18 @@ import {
     useCallback, useEffect, useRef,
     useState
 } from 'react'
-import { classNames } from 'shared/lib/classNames/classNames'
+import { classNames, type Mods } from 'shared/lib/classNames/classNames'
 
 import styles from './Input.module.scss'
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readonly'>
 
 export type Props = HTMLInputProps & Readonly<{
     className?: string
     'data-testid'?: string
-    value?: string
+    value?: string | number
     onChange?: (value: string) => void
+    readonly?: boolean
 }>
 
 export const Input: FC<Props> = memo(({
@@ -27,11 +28,14 @@ export const Input: FC<Props> = memo(({
     placeholder,
     'data-testid': dataTestId = 'Input',
     autoFocus,
+    readonly,
     ...inputProps
 }: Props) => {
     const inputRef = useRef<HTMLInputElement>(null)
     const [isFocused, setIsFocused] = useState(false)
     const [caretPosition, setCaretPosition] = useState(0)
+
+    const isCaretVisible = isFocused && !readonly
 
     const onChangeHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         onChange?.(event.target.value)
@@ -58,10 +62,14 @@ export const Input: FC<Props> = memo(({
         }
     }, [autoFocus])
 
+    const mods: Mods = {
+        [styles.readonly]: readonly
+    }
+
     return (
         <div
             data-testid={dataTestId}
-            className={classNames(styles.InputWrapper, {}, [className])}
+            className={classNames(styles.InputWrapper, mods, [className])}
         >
             {placeholder &&
                 <div className={styles.placeholder}>
@@ -70,6 +78,7 @@ export const Input: FC<Props> = memo(({
             <div className={styles.caretWrapper}>
                 <input
                     {...inputProps}
+                    readOnly={readonly}
                     type={type}
                     ref={inputRef}
                     autoFocus={autoFocus}
@@ -80,7 +89,7 @@ export const Input: FC<Props> = memo(({
                     onChange={onChangeHandler}
                     onSelect={onSelect}
                 />
-                {isFocused &&
+                {isCaretVisible &&
                     <span
                         className={styles.caret}
                         style={{ left: `${caretPosition * 9.4}px` }}

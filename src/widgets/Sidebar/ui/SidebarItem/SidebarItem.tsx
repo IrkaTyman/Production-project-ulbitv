@@ -5,6 +5,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import { type SidebarItemType } from '../../model/items'
 import { classNames } from 'shared/lib'
 import { type TestProps } from 'shared/types/TestProps'
+import { useSelector } from 'react-redux'
+import { getUserAuthData } from 'entities/User'
 
 export type Props = TestProps & Readonly<{
     item: SidebarItemType
@@ -17,7 +19,9 @@ export const SidebarItem: FC<Props> = memo(({
     collapsed,
     'data-testid': dataTestId = 'SidebarItem'
 }: Props) => {
-    if (!item.Icon) {
+    const isAuth = useSelector(getUserAuthData)
+
+    if (!item.Icon || (!isAuth && item.authOnly)) {
         return null
     }
     return (

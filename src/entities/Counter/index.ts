@@ -1,6 +1,3 @@
-/**
- entities/Counter
- **/
 export { Counter } from './ui/Counter'
 
 export type { CounterSchema } from './model/types/CounterSchema'
