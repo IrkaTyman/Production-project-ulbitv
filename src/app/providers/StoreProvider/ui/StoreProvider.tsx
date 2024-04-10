@@ -4,9 +4,10 @@ import { createReduxStore } from '../config/store'
 import { type StateSchema } from '../config/StateSchema'
 import { type ReducersMapObject } from '@reduxjs/toolkit'
 import { useNavigate } from 'react-router-dom'
+import { type DeepPartial } from 'shared/types/DeepPartial'
 
 type StoreProviderProps = PropsWithChildren & Readonly<{
-    initialState?: Partial<StateSchema>
+    initialState?: DeepPartial<StateSchema>
     asyncReducers?: Partial<ReducersMapObject<StateSchema>>
 }>
 

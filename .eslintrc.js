@@ -47,6 +47,11 @@ module.exports = {
     ],
         'react/jsx-filename-extension': [2, {extensions: ['.js', '.ts', '.tsx']}]
     },
+    globals: {
+        __IS_DEV__: true,
+        __API__: true,
+        __PROJECT__: true
+    },
     overrides: [
         {
             files: ['**/**/*.{test, stories}.{ts, tsx}'],

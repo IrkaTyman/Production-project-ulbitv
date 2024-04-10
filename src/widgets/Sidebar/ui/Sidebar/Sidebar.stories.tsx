@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from 'app/providers/ThemeProvider'
 import { Sidebar } from './Sidebar'
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 
 const meta = {
     title: 'widgets/Sidebar',
@@ -10,7 +11,12 @@ const meta = {
     parameters: {
         layout: 'centered'
     },
-    argTypes: {}
+    argTypes: {},
+    decorators: [
+        StoreDecorator({
+            user: { authData: { id: '', username: '' } }
+        })
+    ]
 } satisfies Meta<typeof Sidebar>
 
 export default meta
@@ -22,5 +28,11 @@ export const Default: Story = {
 
 export const Dark: Story = {
     args: {},
-    decorators: ThemeDecorator(Theme.Dark)
+    decorators: [
+        ThemeDecorator(Theme.Dark)
+    ]
+}
+
+export const NoAuth: Story = {
+    args: {}
 }
